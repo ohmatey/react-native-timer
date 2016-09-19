@@ -15,7 +15,7 @@ import DisplayCountDown from './DisplayCountDown.js';
 const CountDown = React.createClass({
     mixins: [TimerMixin],
     componentDidMount: function() {
-        this.startTimer(this.props.countDown);
+        this.startTimer(this.props.name);
     },
 
     getInitialState: function() {
@@ -29,7 +29,7 @@ const CountDown = React.createClass({
     checkTimer(time){
         if(time <= 0 || this.state.countDown <= 0){
             this.props.timerFinished(this.startTimer, this.props.selectedDuration);
-            this.clearInterval(this.timer);
+            this.clearTimer();
 
             this.setState({
                 countDown: 0,
@@ -40,6 +40,10 @@ const CountDown = React.createClass({
         }
 
         return true
+    },
+
+    componentWillUnmount(){
+        this.clearTimer();
     },
 
     startTimer(time){
@@ -54,9 +58,15 @@ const CountDown = React.createClass({
                 if(!this.state.paused){
                     this.props.decrimentTimer();
                     this.setState({countDown: this.state.countDown - 1})
-                    this.checkTimer(this.state.coundDOwn);
+                    this.checkTimer(this.state.coundDown);
                 }
             }, 1000)
+        }
+    },
+
+    clearTimer(){
+        if(this.timer){
+            this.clearInterval(this.timer);
         }
     },
 
@@ -80,11 +90,11 @@ const CountDown = React.createClass({
             selectedDuration,
             paused,
             addTime,
-            addTimeAmount
+            addTimeAmount,
+            name
         } = this.props;
 
         const {
-            alarmName,
             countDown,
             completed
         } = this.state;
@@ -92,12 +102,15 @@ const CountDown = React.createClass({
         return(
             <LinearGradient colors={this.props.gradientColors} style={styles.linearGradient}>
                 <View style={styles.card}>
-                    <DisplayCountDown time={countDown} name={alarmName} />
+                    <DisplayCountDown time={countDown} name={name} />
 
                     <View style={styles.buttonGroup}>
                         <TouchableHighlight
                             style={[styles.button, styles.rightButton]}
-                            onPress={() => this.startTimer(selectedDuration)}>
+                            onPress={() => {
+                                this.clearTimer();
+                                this.startTimer(selectedDuration)
+                            }}>
                             <Text style={styles.text}>Repeat</Text>
                         </TouchableHighlight>
                         {completed ?

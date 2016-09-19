@@ -37,9 +37,6 @@ const mapDispatchToProps = (dispatch) => ({
     pauseTimer(time){
         dispatch(actions.pauseTimer(time));
     },
-    finishTimer(){
-        dispatch(actions.finishTimer());
-    },
     addTime(amount){
         dispatch(actions.addTime(amount));
     },

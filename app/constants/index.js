@@ -5,3 +5,9 @@ export const RESETTIMER = 'RESETTIMER'
 export const DECRIMENTTIMER = 'DECRIMENTTIMER'
 export const RESTARTTIMER = 'RESTARTTIMER'
 export const ADDTIME = 'ADDTIME'
+
+
+export const CREATETIMER = 'CREATETIMER'
+export const DELETETIMER = 'DELETETIMER'
+export const UPDATETIMER = 'UPDATETIMER'
+export const GETTIMERS = 'GETTIMERS'

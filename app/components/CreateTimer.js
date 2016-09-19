@@ -9,6 +9,7 @@ import {
   Dimensions
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
 import LinearGradient from 'react-native-linear-gradient';
 
 const PickerItemIOS = PickerIOS.Item;
@@ -18,7 +19,7 @@ class CreateTimer extends Component {
         super(props);
 
         this.state = {
-            
+
         }
     }
 
@@ -62,6 +63,9 @@ class CreateTimer extends Component {
                         countDown: this.state.selectedDuration
                     })}>
                         <Text style={styles.text}>Submit</Text>
+                    </TouchableHighlight>
+                    <TouchableHighlight style={styles.buttons} onPress={() => Actions.pop()}>
+                        <Text style={styles.text}>Back</Text>
                     </TouchableHighlight>
                 </LinearGradient>
             </View>
