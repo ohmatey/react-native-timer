@@ -13,20 +13,23 @@ class CreateTimerContainer extends React.Component {
 }
 
 const mapStateToProps = ({
-    countdown,
     selectedDuration
 }, props) => ({
-    countdown,
     selectedDuration,
     gradientColors: ['#4ce880', '#6459ff']
 })
 
 const mapDispatchToProps = (dispatch) => ({
     startTimer(timer){
-        dispatch(actions.startTimer({...timer}));
-
+        dispatch(actions.createTimer({...timer}));
         // go to countDown page
-        Actions.countDown()
+        Actions.countDown({
+            name: timer.alarmName,
+            duration: timer.selectedDuration
+        })
+    },
+    backButton(){
+        Actions.home();
     }
 });
 

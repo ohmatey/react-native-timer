@@ -66,3 +66,10 @@ export function createTimer(timer) {
         ...timer
     };
 }
+
+export function getTimer(alarmName) {
+    return {
+        type: types.GETTIMER,
+        alarmName
+    };
+}

@@ -15,12 +15,12 @@ import DisplayCountDown from './DisplayCountDown.js';
 const CountDown = React.createClass({
     mixins: [TimerMixin],
     componentDidMount: function() {
-        this.startTimer(this.props.name);
+        this.startTimer(this.props.duration);
     },
 
     getInitialState: function() {
         return {
-            countDown: this.props.countDown,
+            countDown: this.props.duration,
             completed: false,
             paused: this.props.paused,
         };
@@ -91,7 +91,7 @@ const CountDown = React.createClass({
             paused,
             addTime,
             addTimeAmount,
-            name
+            alarmName
         } = this.props;
 
         const {
@@ -102,7 +102,7 @@ const CountDown = React.createClass({
         return(
             <LinearGradient colors={this.props.gradientColors} style={styles.linearGradient}>
                 <View style={styles.card}>
-                    <DisplayCountDown time={countDown} name={name} />
+                    <DisplayCountDown time={countDown} name={alarmName} />
 
                     <View style={styles.buttonGroup}>
                         <TouchableHighlight

@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux'
-import countDown from './countDown.js'
+//import timer from './timer.js'
 import navigator from './navigator.js'
 import timers from './timers.js'
 
 const rootReducer = combineReducers({
-  countDown,
+  //timer,
   timers
 })
 

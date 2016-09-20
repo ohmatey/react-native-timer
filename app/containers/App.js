@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View, StatusBar } from 'react-native';
-import { Router, Scene, Actions, ActionConst, Modal } from 'react-native-router-flux';
+import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-//import Orientation from 'react-native-orientation';
 
 import CreateTimerContainer from '../containers/CreateTimerContainer.js';
 import CountDownContainer from '../containers/CountDownContainer.js';
@@ -20,7 +19,7 @@ class App extends React.Component {
 
         switch (nav.name) {
             case 'home':
-                backButton = <Button name="plus" backgroundColor="transparent" onPress={() => Actions.creatCountDownTimer()} />
+                backButton = <Button name="plus" backgroundColor="transparent" onPress={Actions.creatCountDownTimer} />
                 break;
             case 'countDown':
                 backButton = <Button name="arrow-left" backgroundColor="transparent" onPress={Actions.home} />
@@ -47,11 +46,9 @@ class App extends React.Component {
                 }}
                 renderBackButton={this.renderBackButton}>
 
-                    <Scene key="createCountDownModal" duration={3} direction="vertical" component={Modal}>
-                        <Scene key="root">
-                            <Scene key="home" component={HomeScreen} title="Home" initial={true} />
-                            <Scene key="countDown" component={CountDownContainer} title="Timer"/>
-                        </Scene>
+                    <Scene key="root">
+                        <Scene key="home" component={HomeScreen} title="Home" initial={true} />
+                        <Scene key="countDown" component={CountDownContainer} title="Timer"/>
                         <Scene key="creatCountDownTimer" component={CreateTimerContainer} title="Create Timer" />
                     </Scene>
 

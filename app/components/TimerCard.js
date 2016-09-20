@@ -20,8 +20,11 @@ const TimerCard = ({
             <Text>{description}</Text>
 
             <View style={styles.buttonGroup}>
-                <TouchableHighlight style={styles.buttons} onPress={() => Actions.countDown({name})}>
-                    <Text style={styles.text}>Run</Text>
+                <TouchableHighlight style={styles.buttons} onPress={() => Actions.countDown({
+                        name,
+                        duration
+                    })}>
+                    <Text style={styles.text}>Run {duration}</Text>
                 </TouchableHighlight>
             </View>
         </View>

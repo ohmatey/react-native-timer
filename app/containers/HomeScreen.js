@@ -45,7 +45,7 @@ const HomeScreen = React.createClass({
                         pagingEnabled={true}
                         style={styles.horizontalScrollView}>
                         {timers.map((timer, i) => (
-                            <TimerCard key={i} name={timer.name} duration={timer.duration} scrolling={scrolling} />
+                            <TimerCard key={i} name={timer.alarmName} duration={timer.selectedDuration} />
                         ))}
                     </ScrollView>
                 </LinearGradient>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state, props) => {
     return {
-        ...state.timers,
+        ...state,
         gradientColors: ['#4ce880', '#6459ff'],
     };
 }

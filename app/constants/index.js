@@ -10,4 +10,8 @@ export const ADDTIME = 'ADDTIME'
 export const CREATETIMER = 'CREATETIMER'
 export const DELETETIMER = 'DELETETIMER'
 export const UPDATETIMER = 'UPDATETIMER'
-export const GETTIMERS = 'GETTIMERS'
+export const GETTIMER = 'GETTIMER'
+
+
+
+export const ADDHISTORY = 'ADDHISTORY'

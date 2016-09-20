@@ -64,7 +64,7 @@ class CreateTimer extends Component {
                     })}>
                         <Text style={styles.text}>Submit</Text>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.buttons} onPress={() => Actions.pop()}>
+                    <TouchableHighlight style={styles.buttons} onPress={() => this.props.backButton()}>
                         <Text style={styles.text}>Back</Text>
                     </TouchableHighlight>
                 </LinearGradient>
