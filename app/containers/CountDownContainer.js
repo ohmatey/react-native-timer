@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch) => ({
                     startTimerFn(time);
                     this.startTimer(time);
                 }},
-                {text: 'Set Another', onPress: () => Actions.creatCountDownTimer()},
+                {text: 'Set Another', onPress: () => Actions.createCountDownTimer()},
                 {text: 'Add 30 secs', onPress: () => {
                     startTimerFn(time + 30);
                     this.startTimer(time + 30);

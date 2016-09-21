@@ -19,13 +19,10 @@ class App extends React.Component {
 
         switch (nav.name) {
             case 'home':
-                backButton = <Button name="plus" backgroundColor="transparent" onPress={Actions.creatCountDownTimer} />
+                backButton = <Button name="plus" backgroundColor="transparent" onPress={Actions.createCountDownTimer} />
                 break;
-            case 'countDown':
-                backButton = <Button name="arrow-left" backgroundColor="transparent" onPress={Actions.home} />
-                break
             default:
-                backButton = <Button name="arrow-left" backgroundColor="transparent" onPress={Actions.pop} />
+                backButton = <Button name="arrow-left" backgroundColor="transparent" onPress={Actions.home} />
             }
 
       return backButton;
@@ -49,7 +46,7 @@ class App extends React.Component {
                     <Scene key="root">
                         <Scene key="home" component={HomeScreen} title="Home" initial={true} />
                         <Scene key="countDown" component={CountDownContainer} title="Timer"/>
-                        <Scene key="creatCountDownTimer" component={CreateTimerContainer} title="Create Timer" />
+                        <Scene key="createCountDownTimer" component={CreateTimerContainer} title="Create Timer" />
                     </Scene>
 
             </RouterWithRedux>
