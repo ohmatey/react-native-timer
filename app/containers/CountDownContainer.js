@@ -20,7 +20,6 @@ const mapStateToProps = (state, {
     alarmName,
     duration
 }) => {
-    console.log(duration)
     return {
         name: alarmName,
         duration,

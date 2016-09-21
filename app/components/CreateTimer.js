@@ -57,14 +57,14 @@ class CreateTimer extends Component {
                             onValueChange={(selectedDuration) => this.setState({selectedDuration})}>
                             {this.renderPickerItems()}
                         </PickerIOS>
-                    <TouchableHighlight style={styles.buttons} onPress={() => this.props.startTimer({
+                    <TouchableHighlight style={styles.buttons} underlayColor={"#2bd1aa"} onPress={() => this.props.startTimer({
                         alarmName: this.state.alarmName,
                         selectedDuration: this.state.selectedDuration,
                         countDown: this.state.selectedDuration
                     })}>
                         <Text style={styles.text}>Submit</Text>
                     </TouchableHighlight>
-                    <TouchableHighlight style={styles.buttons} onPress={() => this.props.backButton()}>
+                    <TouchableHighlight style={[styles.buttons, styles.backButton]} underlayColor={"#2bd1aa"} onPress={() => this.props.backButton()}>
                         <Text style={styles.text}>Back</Text>
                     </TouchableHighlight>
                 </LinearGradient>
@@ -77,11 +77,18 @@ const {height, width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     buttons: {
-        padding: 5,
+        backgroundColor: "transparent",
         width: width - 50,
-        alignItems: "center",
-        borderColor: "white",
-        borderWidth: 2
+        margin: 10,
+        borderRadius: 20,
+        borderColor: "#2DDCB5",
+        borderWidth: 2,
+        padding: 10,
+        alignItems: "center"
+    },
+    backButton: {
+        backgroundColor: "transparent",
+        borderColor: "transparent",
     },
     text: {
         color: "white",

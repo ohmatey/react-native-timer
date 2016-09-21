@@ -43,6 +43,8 @@ const HomeScreen = React.createClass({
                         horizontal={true}
                         centerContent={true}
                         pagingEnabled={true}
+                        keyboardShouldPersistTaps={true}
+                        keyboardDismissMode='on-drag'
                         style={styles.horizontalScrollView}>
                         {timers.map((timer, i) => (
                             <TimerCard key={i} name={timer.alarmName} duration={timer.selectedDuration} />

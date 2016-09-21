@@ -4,7 +4,8 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Dimensions
+  Dimensions,
+  TextInput
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
@@ -18,13 +19,13 @@ const TimerCard = ({
 
         <View style={styles.card}>
             <Text>{description}</Text>
-
             <View style={styles.buttonGroup}>
-                <TouchableHighlight style={styles.buttons} onPress={() => Actions.countDown({
+                <TouchableHighlight style={styles.buttons} underlayColor={"#2bd1aa"} onPress={() => Actions.countDown({
                         name,
                         duration
                     })}>
-                    <Text style={styles.text}>Run {duration}</Text>
+
+                    <Text style={styles.text}>RUN {duration}</Text>
                 </TouchableHighlight>
             </View>
         </View>
@@ -48,10 +49,11 @@ const styles = StyleSheet.create({
         backgroundColor: "transparent"
     },
     text: {
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        color: "white",
     },
     buttonText: {
-        fontWeight: "500"
+        fontWeight: "500",
     },
     buttonGroup: {
         position: "absolute",
@@ -60,8 +62,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     buttons: {
-        backgroundColor: "transparent",
-        borderColor: "white",
+        backgroundColor: "#2DDCB5",
+        margin: 20,
+        borderRadius: 20,
+        borderColor: "transparent",
         borderWidth: 2,
         alignSelf: "stretch",
         alignItems: "center",

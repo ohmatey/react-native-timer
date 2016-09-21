@@ -21,6 +21,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
     startTimer(timer){
+        console.log(timer)
         dispatch(actions.createTimer({...timer}));
         // go to countDown page
         Actions.countDown({

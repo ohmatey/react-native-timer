@@ -32,7 +32,6 @@ export default function countDown(state = initialState, action) {
                 ...state,
                 timer(undefined, action)
             ]
-            break;
         case types.DELETETIMER:
             return getTimer(alarmName);
         case types.UPDATETIMER:

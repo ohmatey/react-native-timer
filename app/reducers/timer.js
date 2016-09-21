@@ -21,6 +21,17 @@ export default function timer(state = initialState, action) {
     } = action;
 
     switch (type) {
+        case types.CREATETIMER:
+            return Object.assign({}, state, {
+                alarmName,
+                selectedDuration,
+                countDown: selectedDuration,
+                history: history(state, {
+                    type: types.ADDHISTORY,
+                    message: "Created"
+                })
+            })
+
         case types.STARTTIMER:
             return Object.assign({}, state, {
                 alarmName,
@@ -30,7 +41,6 @@ export default function timer(state = initialState, action) {
                     type: types.ADDHISTORY
                 })
             })
-            break;
         case types.FINISHTIMER:
             return Object.assign({}, state, {
                 countDown: 0,
