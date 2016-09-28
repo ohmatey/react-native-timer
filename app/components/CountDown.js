@@ -15,7 +15,9 @@ import DisplayCountDown from './DisplayCountDown.js';
 const CountDown = React.createClass({
     mixins: [TimerMixin],
     componentDidMount: function() {
-        this.startTimer(this.props.selectedDuration);
+        if(this.props.selectedDuration){
+            this.startTimer(this.props.selectedDuration);
+        }
     },
 
     getInitialState: function() {

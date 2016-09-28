@@ -21,12 +21,11 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = (dispatch) => ({
     startTimer(timer){
-        console.log(timer)
         dispatch(actions.createTimer({...timer}));
         // go to countDown page
         Actions.countDown({
-            name: timer.alarmName,
-            duration: timer.selectedDuration
+            alarmName: timer.alarmName,
+            selectedDuration: timer.selectedDuration
         })
     },
     backButton(){
