@@ -65,9 +65,13 @@ const CountDown = React.createClass({
     },
 
     clearTimer(){
-        if(this.timer){
-            this.clearInterval(this.timer);
-        }
+        this.clearInterval(this.timer);
+        this.setState({
+            paused: false,
+            countDown: 0,
+            completed: true
+        });
+        console.log("asd")
     },
 
     pauseTimer(countDown){
