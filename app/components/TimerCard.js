@@ -10,22 +10,23 @@ import {
 import { Actions } from 'react-native-router-flux';
 
 const TimerCard = ({
-    duration,
-    name,
+    selectedDuration,
+    alarmName,
+    countDown,
     description
 }) => (
     <View style={styles.container}>
-        <Text style={styles.timerTitleText}>{name}</Text>
+        <Text style={styles.timerTitleText}>{alarmName}</Text>
 
         <View style={styles.card}>
             <Text>{description}</Text>
             <View style={styles.buttonGroup}>
                 <TouchableHighlight style={styles.buttons} underlayColor={"#2bd1aa"} onPress={() => Actions.countDown({
-                        name,
-                        duration
-                    })}>
-
-                    <Text style={styles.text}>RUN {duration}</Text>
+                    alarmName,
+                    countDown,
+                    selectedDuration
+                })}>
+                    <Text style={styles.text}>RUN {selectedDuration}</Text>
                 </TouchableHighlight>
             </View>
         </View>

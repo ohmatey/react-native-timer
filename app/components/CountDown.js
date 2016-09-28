@@ -15,19 +15,20 @@ import DisplayCountDown from './DisplayCountDown.js';
 const CountDown = React.createClass({
     mixins: [TimerMixin],
     componentDidMount: function() {
-        this.startTimer(this.props.duration);
+        this.startTimer(this.props.selectedDuration);
     },
 
     getInitialState: function() {
         return {
-            countDown: this.props.duration,
+            countDown: this.props.selectedDuration,
             completed: false,
             paused: this.props.paused,
+            selectedDuration: this.props.selectedDuration
         };
     },
 
     checkTimer(time){
-        if(time <= 0 || this.state.countDown <= 0){
+        if(time <= 0){
             this.props.timerFinished(this.startTimer, this.props.selectedDuration);
             this.clearTimer();
 
@@ -47,6 +48,10 @@ const CountDown = React.createClass({
     },
 
     startTimer(time){
+        this.setState({
+            countDown: time
+        })
+
         if(this.checkTimer(time)){
             this.setState({
                 countDown: time,
@@ -58,7 +63,7 @@ const CountDown = React.createClass({
                 if(!this.state.paused){
                     this.props.decrimentTimer();
                     this.setState({countDown: this.state.countDown - 1})
-                    this.checkTimer(this.state.coundDown);
+                    this.checkTimer(this.state.countDown);
                 }
             }, 1000)
         }
@@ -71,7 +76,6 @@ const CountDown = React.createClass({
             countDown: 0,
             completed: true
         });
-        console.log("asd")
     },
 
     pauseTimer(countDown){
@@ -91,22 +95,22 @@ const CountDown = React.createClass({
 
     render(){
         const {
-            selectedDuration,
-            paused,
             addTime,
             addTimeAmount,
-            alarmName
+            alarmName,
         } = this.props;
 
         const {
             countDown,
-            completed
+            completed,
+            selectedDuration,
+            paused
         } = this.state;
 
         return(
             <LinearGradient colors={this.props.gradientColors} style={styles.linearGradient}>
                 <View style={styles.card}>
-                    <DisplayCountDown time={countDown} name={alarmName} />
+                    <DisplayCountDown {...this.props} selectedDuration={selectedDuration} time={countDown} />
 
                     <View style={styles.buttonGroup}>
                         <TouchableHighlight
@@ -120,7 +124,7 @@ const CountDown = React.createClass({
                         {completed ?
                             <TouchableHighlight
                                 style={[styles.button, styles.leftButton]}
-                                onPress={() => this.startTimer(countDown)}>
+                                onPress={() => this.startTimer(selectedDuration)}>
                                 <Text style={styles.text}>Start</Text>
                             </TouchableHighlight>
                             :
@@ -135,7 +139,6 @@ const CountDown = React.createClass({
                 <ScrollView
                     ref={(scrollView) => { _scrollView = scrollView; }}
                     automaticallyAdjustContentInsets={false}
-                    onScroll={() => { console.log('onScroll!'); }}
                     scrollEventThrottle={200}
                     horizontal={true}
                     style={styles.horizontalScrollView}>
@@ -144,13 +147,10 @@ const CountDown = React.createClass({
                     </TouchableHighlight>
                     <TouchableHighlight style={styles.bottomButtons} onPress={() => {
                             addTime({time: addTimeAmount});
-                            this.setState({countDown: countDown + addTimeAmount})
-                        }}>
-                        <Text style={styles.text}>Add {addTimeAmount} secs</Text>
-                    </TouchableHighlight>
-                    <TouchableHighlight style={styles.bottomButtons} onPress={() => {
-                            addTime({time: addTimeAmount});
-                            this.setState({countDown: countDown + addTimeAmount})
+                            this.setState({
+                                countDown: this.state.countDown + addTimeAmount,
+                                selectedDuration: this.state.countDown + addTimeAmount
+                            })
                         }}>
                         <Text style={styles.text}>Add {addTimeAmount} secs</Text>
                     </TouchableHighlight>
@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius,
         width: width - 50,
-        height: height - 500,
         shadowColor: "#000000",
         shadowOpacity: 0.3,
         shadowRadius: 3,

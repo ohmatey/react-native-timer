@@ -16,13 +16,9 @@ class CountDownContainer extends React.Component {
   }
 }
 
-const mapStateToProps = (state, {
-    alarmName,
-    duration
-}) => {
+const mapStateToProps = (state, props) => {
     return {
-        name: alarmName,
-        duration,
+        ...props,
         addTimeAmount: 30,
         gradientColors: ['#4ce880', '#6459ff'],
     };
